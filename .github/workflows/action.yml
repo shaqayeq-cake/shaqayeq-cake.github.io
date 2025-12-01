@@ -1,0 +1,44 @@
+name: Manual Zip Extractor
+
+on:
+  push:
+    paths:
+      - 'site.zip'  # ⚠️ اکشن فقط وقتی اجرا میشه که فایلی با این اسم دقیق آپلود کنی
+
+permissions:
+  contents: write   # اجازه میده که اکشن بتونه فایل‌ها رو تغییر بده و کامیت کنه
+
+jobs:
+  unzip-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Unzip and Move Files
+        run: |
+          echo "Found site.zip! Extracting..."
+          
+          # 1. ساختن یک پوشه موقت
+          mkdir temp_extract
+          
+          # 2. باز کردن زیپ توی اون پوشه (-o یعنی overwrite کن اگه چیزی بود)
+          unzip -o site.zip -d temp_extract
+          
+          # 3. انتقال فایل‌ها به روت اصلی
+          # نکته: اگر توی زیپت پوشه dist هست، خط پایین رو به temp_extract/dist/* تغییر بده
+          cp -r temp_extract/* .
+          
+          # 4. پاک کردن فایل زیپ و پوشه موقت (برای تمیز موندن ریپو)
+          rm site.zip
+          rm -rf temp_extract
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Auto Deploy Bot"
+          git config --global user.email "bot@noreply.github.com"
+          
+          git add .
+          git commit -m "🚀 Auto-extracted static files" || echo "No changes to commit"
+          git push
