@@ -11,11 +11,6 @@
     <meta property="og:title" content="شقایق کیک | کیک خانگی با عشق" />
     <meta property="og:description" content="کیک‌های خانگی با مواد تازه و طعم بی‌نظیر" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@shaqayeqcake" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,5 +20,34 @@
 
   <body>
     <div id="root"></div>
+
+    <!-- Instagram quick link -->
+    <a href="https://ig.me/m/shaqayeq_cake7" class="social-ig" aria-label="Instagram - Shaqayeq Cake" target="_blank" rel="noopener noreferrer" title="Visit our Instagram">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="#fff" stroke-width="1.2" fill="#E1306C"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="#fff" opacity="0.95"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="#fff"/>
+      </svg>
+    </a>
+
+    <style>
+      .social-ig{position:fixed;bottom:18px;left:18px;display:inline-block;border-radius:50%;box-shadow:0 6px 14px rgba(0,0,0,0.18);z-index:9999}
+      .social-ig svg{display:block}
+      @media (prefers-reduced-motion:reduce){.social-ig{transition:none}}
+    </style>
+    <script>
+      (function(){
+        const IG_LINK = 'https://ig.me/m/shaqayeq_cake7';
+        function replaceAnchors(root){
+          try{
+            const anchors = (root||document).querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[class*="whatsapp"]');
+            anchors.forEach(a=>{ a.setAttribute('href', IG_LINK); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener noreferrer'); });
+          }catch(e){}
+        }
+        if(document.readyState==='loading')document.addEventListener('DOMContentLoaded', ()=>replaceAnchors(document)); else replaceAnchors(document);
+        const mo = new MutationObserver(records=>{ for(const r of records) for(const n of r.addedNodes) n.nodeType===1 && replaceAnchors(n); });
+        mo.observe(document.body||document.documentElement,{childList:true,subtree:true});
+      })();
+    </script>
   </body>
 </html>
